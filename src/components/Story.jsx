@@ -1,7 +1,7 @@
 // Fully Responsive Story Component
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import flowers from "../assets/image/Couple.jpg";
+import flowers from "../assets/image/couple.jpg";
 import SectionDivider from "./SectionDivider";
 import MandalaWatermark from "./MandalaWatermark";
 
