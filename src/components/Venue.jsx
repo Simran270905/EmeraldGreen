@@ -84,7 +84,7 @@ const Venue = () => {
         {/* Text Section with elegant reveal */}
         <motion.div variants={itemVariants}>
           <motion.h2 
-            className="text-center md:text-left font-serif text-3xl md:text-4xl text-[#f1f8f4] mb-6"
+            className="font-adelio font-bold text-center md:text-left text-4xl md:text-6xl text-[#f1f8f4] mb-2"
             whileHover={{ 
               scale: 1.03,
               textShadow: "0 0 20px rgba(241, 248, 244, 0.5)"
@@ -101,17 +101,18 @@ const Venue = () => {
             Venue
           </motion.h2>
 
-          <motion.div variants={itemVariants}>
-            <SectionDivider color="#f7ddb0" />
-          </motion.div>
+          <div className="flex justify-center md:justify-start mb-4">
+          <SectionDivider color="#f7ddb0" />
+        </div>
+            
 
           <motion.p 
-            className="text-sm md:text-base text-[#cfe6da] leading-relaxed mt-6 px-2"
+            className="font-para text-sm md:text-base text-[#cfe6da] leading-relaxed mt-6 px-2"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
           >
             <motion.span 
-              className="block font-medium text-[#f7ddb0] text-xl mb-2"
+              className="block font-para font-bold text-[#f7ddb0] text-xl mb-2"
               animate={{ 
                 scale: [1, 1.05, 1],
                 textShadow: ["none", "0 0 10px rgba(247, 221, 176, 0.6)", "none"]

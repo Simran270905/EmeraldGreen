@@ -1,1 +1,69 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family:monster; 
+    src: url("../src/assets/Fonts/Monster.ttf");
+}
+@font-face {
+    font-family: awesome;
+    src: url(../src/assets/Fonts/Awesome.ttf);
+}
+
+@font-face {
+    font-family: bidena;
+    src: url("../src/assets/Fonts/Bidenatrial.ttf");
+}
+@font-face {
+    font-family: transcity;
+    src: url("../src/assets/Fonts/Transcity.otf");
+}
+@font-face {
+    font-family:bidena; ;
+    src: url("../src/assets/fonts/Bidenatrial.ttf");
+}
+
+@font-face {
+    font-family: basker;
+    src: url("../src/assets/fonts/Baskervville-Regular.ttf");
+}
+@font-face {
+    font-family: weds;
+    src: url("../src/assets/fonts/Wedding-Accesories.ttf");
+}
+@font-face {
+    font-family: nav;
+    src: url("../src/assets/fonts/Awesome.ttf");
+}
+
+@font-face {
+    font-family: foot;
+    src: url("../src/assets/fonts/Milker.otf");
+}
+@font-face {
+    font-family: title;
+    src: url("../src/assets/fonts/Hasly.otf");
+}
+@font-face {
+    font-family: font ;
+    src: url("../src/assets/fonts/Footlight.ttf");
+}
+@font-face {
+    font-family:adelio ;
+    src: url("../src/assets/fonts/adelio.otf");
+}
+
+
+@theme {
+   
+  --font-head:bidena;
+  --font-para:basker;
+  --font-date:weds;
+  --font-nav:nav;
+  --font-foot:foot;
+  --font-title:title;
+  --font-font:font;
+  --font-monster:monster;
+  --font-awesome:awesome;
+  --font-adelio:adelio;
+}
+

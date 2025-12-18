@@ -81,7 +81,7 @@ const Hero = () => {
           transition={{ delay: 0.6, duration: 0.8 }}
         >
           <motion.p 
-            className="text-xs tracking-[0.4em] uppercase text-[#f7ddb0] mb-6"
+            className="font-para font-bold text-xs tracking-[0.4em] uppercase text-[#f7ddb0] mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
@@ -90,12 +90,12 @@ const Hero = () => {
           </motion.p>
 
           <motion.h1 
-            className="font-serif text-5xl md:text-6xl text-[#f1f8f4] leading-tight"
+            className="font-head text-5xl md:text-6xl text-[#f1f8f4] leading-tight"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1, type: "spring", stiffness: 200 }}
           >
-            Aditi
+            Kabir
             <motion.span 
               className="block font-light text-2xl my-4 text-[#f7ddb0]"
               animate={{ 
@@ -110,7 +110,7 @@ const Hero = () => {
             >
               &amp;
             </motion.span>
-            Rohan
+            Naina
           </motion.h1>
 
           <motion.div 
@@ -133,7 +133,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.p 
-            className="tracking-widest text-[#cfe6da]"
+            className="font-serif tracking-widest text-[#cfe6da]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6 }}
@@ -142,7 +142,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.p 
-            className="mt-3 text-sm text-[#b8d6c7]"
+            className="font-para font-bold mt-3 text-sm text-[#b8d6c7]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8 }}

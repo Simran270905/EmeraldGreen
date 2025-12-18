@@ -83,7 +83,7 @@ const Story = () => {
         animate={isVisible ? "visible" : "hidden"}
       >
         <motion.h2 
-          className="text-center font-serif text-2xl sm:text-3xl md:text-4xl text-[#f1f8f4] mb-6 px-2"
+          className="text-center font-adelio font-bold text-4xl sm:text-4xl md:text-5xl text-[#f1f8f4] mb-6 px-2"
           variants={itemVariants}
           whileHover={{ 
             scale: 1.02,
@@ -120,7 +120,7 @@ const Story = () => {
           </motion.div>
 
           {/* Responsive Story Cards */}
-          <div className="space-y-4 sm:space-y-6 order-1 lg:order-2 px-2">
+          <div className="font-para space-y-4 sm:space-y-6 order-1 lg:order-2 px-2">
             {[
               "What began as a simple friendship, slowly blossomed into a journey of love.",
               "Filled with laughter, shared dreams, and unforgettable memories.",

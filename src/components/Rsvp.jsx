@@ -103,7 +103,7 @@ const Rsvp = () => {
       >
         {/* Floating title with shimmer */}
         <motion.h2 
-          className="font-serif text-3xl md:text-4xl text-[#f1f8f4] mb-6"
+          className="font-adelio text-4xl md:text-6xl text-[#f1f8f4] mb-6"
           variants={itemVariants}
           whileHover={{ 
             scale: 1.05,
@@ -127,7 +127,7 @@ const Rsvp = () => {
 
         {/* Subtle description */}
         <motion.p 
-          className="text-sm md:text-base text-[#5f7f71] leading-relaxed mb-8 px-4"
+          className="font-para text-sm md:text-base text-[#5f7f71] leading-relaxed mb-8 px-4"
           variants={itemVariants}
         >
           Kindly let us know if you will be able to attend our special day.

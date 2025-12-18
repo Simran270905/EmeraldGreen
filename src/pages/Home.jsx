@@ -1,4 +1,4 @@
- import Hero from "../components/Main";
+ import Main from "../components/Main";
 import Events from "../components/WeddingEvent";
 import RSVP from "../components/Rsvp";
 import Venue from "../components/Venue";
@@ -11,7 +11,7 @@ import Story from "../components/Story";
 const Home = () => {
   return (
     <>
-      <Hero />
+      <Main/>
       <Story/>
       <Couple/>
       <Events />

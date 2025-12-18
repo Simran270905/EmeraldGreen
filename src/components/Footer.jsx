@@ -4,7 +4,7 @@ import MandalaWatermark from "./MandalaWatermark";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#143a2b]/95 py-16 px-6 overflow-hidden">
+    <footer className="relative bg-[#143a2b]/95 py-7 px-4 overflow-hidden">
       {/* Darkened Mandala with gentle pulse */}
       <motion.div
         className="absolute inset-0 opacity-5 z-0"
@@ -55,7 +55,7 @@ const Footer = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
       >
         <motion.h2 
-          className="font-serif text-3xl md:text-4xl text-[#f1f8f4] mb-8 px-4"
+          className="font-adelio font-bold text-4xl md:text-6xl text-[#f1f8f4] mb-8 px-4"
           animate={{ 
             y: [0, -8, 0],
             textShadow: [
@@ -84,7 +84,7 @@ const Footer = () => {
         </motion.div>
 
         <motion.p 
-          className="mt-8 text-sm md:text-base text-[#5f7f71] leading-relaxed px-4"
+          className="font-para font-bold mt-8 text-sm md:text-base text-[#5f7f71] leading-relaxed px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}

@@ -93,7 +93,7 @@ const Events = () => {
       >
         {/* Glowing title */}
         <motion.h2 
-          className="text-center font-serif text-3xl md:text-4xl text-[#f1f8f4] mb-6"
+          className="text-center font-adelio text-4xl md:text-6xl text-[#f1f8f4] mb-15"
           variants={itemVariants}
           whileHover={{ 
             scale: 1.05,
@@ -137,7 +137,7 @@ const Events = () => {
           />
 
           {/* Timeline cards with countdown shimmer */}
-          <div className="space-y-6">
+          <div className="font-para space-y-6">
             {[
               "Haldi – 10 December, Morning",
               "Mehendi & Sangeet – 11 December, Evening",
