@@ -1,6 +1,5 @@
  import Main from "../components/Main";
 import Events from "../components/WeddingEvent";
-import RSVP from "../components/Rsvp";
 import Venue from "../components/Venue";
 import Footer from "../components/Footer";
 import Couple from "../components/Couple";
@@ -15,7 +14,7 @@ const Home = () => {
       <Story/>
       <Couple/>
       <Events />
-      <RSVP />
+      
       <Venue/>
       <Footer/>
     </>

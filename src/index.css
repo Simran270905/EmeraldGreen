@@ -67,3 +67,6 @@
   --font-adelio:adelio;
 }
 
+html {
+  scroll-behavior: smooth;
+}
