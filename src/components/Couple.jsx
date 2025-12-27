@@ -7,7 +7,25 @@ import couple4 from "../assets/image/couple4.jpg";
 import SectionDivider from "./SectionDivider";
 import MandalaWatermark from "./MandalaWatermark";
 
-/* Variants */
+const coupleConfig = {
+  id: "wedding-couple-gallery-1",
+  title: "Our Couple",
+  coupleName: "Kabir & Naina",
+  caption: "Moments captured together",
+  images: [couple1, couple2, couple3, couple4],
+  colors: {
+    primary: "#f7ddb0",
+    secondary: "#d9a441", 
+    text: "#f1f8f4",
+    muted: "#5f7f71",
+    background: "#143a2b",
+  },
+  carousel: {
+    autoPlayInterval: 4000,
+  },
+};
+
+/* Variants - EXACT SAME */
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -17,27 +35,25 @@ const itemVariants = {
   },
 };
 
-const Couple = () => {
-  const couples = [couple1, couple2, couple3, couple4];
-
+const Couple = ({ config = coupleConfig }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [viewAll, setViewAll] = useState(false);
   const intervalRef = useRef(null);
 
-  /* Auto carousel (disabled when View All is ON) */
+  /* Auto carousel - EXACT SAME */
   useEffect(() => {
     if (viewAll) return;
 
     intervalRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % couples.length);
-    }, 4000);
+      setCurrentIndex((prev) => (prev + 1) % config.images.length);
+    }, config.carousel.autoPlayInterval);
 
     return () => clearInterval(intervalRef.current);
-  }, [viewAll, couples.length]);
+  }, [viewAll, config.images.length, config.carousel.autoPlayInterval]);
 
   return (
     <section className="relative bg-[#143a2b]/95 py-12 sm:py-16 md:py-24 px-4 overflow-hidden">
-      {/* Mandala Background */}
+      {/* Mandala Background - EXACT SAME */}
       <div className="absolute inset-0 opacity-5 z-0">
         <MandalaWatermark position="center" />
       </div>
@@ -48,19 +64,19 @@ const Couple = () => {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        {/* Heading */}
+        {/* Heading - EXACT SAME */}
         <motion.h2
           className="font-adelio font-bold text-4xl md:text-6xl text-[#f1f8f4] mb-6"
           variants={itemVariants}
         >
-          Our Couple
+          {config.title}
         </motion.h2>
 
         <div className="max-w-sm mx-auto mb-6">
-          <SectionDivider color="#d9a441" />
+          <SectionDivider color={config.colors.secondary} />
         </div>
 
-        {/* TOGGLE BUTTON */}
+        {/* TOGGLE BUTTON - EXACT SAME */}
         <motion.button
           onClick={() => setViewAll(!viewAll)}
           whileHover={{ scale: 1.05 }}
@@ -79,7 +95,7 @@ const Couple = () => {
           {viewAll ? "← Back to Slideshow" : "View All Images"}
         </motion.button>
 
-        {/* ===== CAROUSEL VIEW ===== */}
+        {/* ===== CAROUSEL VIEW ===== - EXACT SAME */}
         {!viewAll && (
           <div className="relative max-w-md md:max-w-2xl mx-auto py-6">
             <motion.div
@@ -91,18 +107,18 @@ const Couple = () => {
               transition={{ duration: 0.6 }}
             >
               <img
-                src={couples[currentIndex]}
+                src={config.images[currentIndex]}
                 alt={`Couple ${currentIndex + 1}`}
                 className="w-full h-full object-cover"
               />
 
-              {/* Overlay */}
+              {/* Overlay - EXACT SAME */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#f7ddb0]/10 via-transparent to-[#d9a441]/10" />
             </motion.div>
 
-            {/* Dots */}
+            {/* Dots - EXACT SAME */}
             <div className="flex justify-center gap-3 mt-6">
-              {couples.map((_, index) => (
+              {config.images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
@@ -117,7 +133,7 @@ const Couple = () => {
           </div>
         )}
 
-        {/* ===== GRID VIEW (VIEW ALL) ===== */}
+        {/* ===== GRID VIEW (VIEW ALL) ===== - EXACT SAME */}
         {viewAll && (
           <motion.div
             className="
@@ -128,7 +144,7 @@ const Couple = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            {couples.map((img, index) => (
+            {config.images.map((img, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
@@ -148,12 +164,12 @@ const Couple = () => {
           </motion.div>
         )}
 
-        {/* Caption */}
+        {/* Caption - EXACT SAME */}
         <motion.p className="font-para font-bold mt-10 text-sm md:text-base text-[#5f7f71]">
           <span className="block text-2xl md:text-4xl text-[#f1f8f4] mb-1">
-            Kabir & Naina
+            {config.coupleName}
           </span>
-          Moments captured together
+          {config.caption}
         </motion.p>
       </motion.div>
     </section>

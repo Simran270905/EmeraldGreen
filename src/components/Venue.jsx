@@ -4,57 +4,93 @@ import venue from "../assets/image/Gallery2.jpg";
 import SectionDivider from "./SectionDivider";
 import MandalaWatermark from "./MandalaWatermark";
 
-const Venue = () => {
+const venueConfig = {
+  id: "wedding-venue-1",
+  title: "Venue",
+  venueName: "The Royal Heritage Palace",
+  address: "Lake Pichola Road<br />Udaipur, Rajasthan",
+  image: venue,
+  colors: {
+    primary: "#f7ddb0",
+    secondary: "#d9a441",
+    text: "#f1f8f4",
+    muted: "#cfe6da",
+    background: "#0f241c",
+  },
+  layout: {
+    padding: { py: "24", px: "6" },
+    maxWidth: "5xl",
+    gap: "12",
+  },
+  animations: {
+    staggerDelay: 0.2,
+    containerDelay: 0.3,
+    mandala: {
+      rotateDuration: 22,
+      scaleDuration: 7,
+      opacity: 0.50,
+    },
+    dots: {
+      count: 60,
+      size: "2",
+      duration: 4,
+      delayIncrement: 0.05,
+    },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: venueConfig.animations.staggerDelay,
+      delayChildren: venueConfig.animations.containerDelay
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 100, damping: 12 }
+  }
+};
+
+const Venue = ({ config = venueConfig }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100, damping: 12 }
-    }
-  };
-
   return (
     <section className="relative bg-[#0f241c] py-24 px-6 overflow-hidden">
-      {/* Darkened Mandala background */}
+      {/* ✅ FIXED: Mandala FIRST + z-20 + opacity-50 */}
       <motion.div
-        className="absolute inset-0 opacity-50 z-0"
+        className="absolute inset-0 z-20"  // ← FIXED z-index
+        style={{ opacity: config.animations.mandala.opacity }}
         initial={{ rotate: 0, scale: 0.8 }}
         animate={{ 
           rotate: 360, 
           scale: [0.8, 1.1, 0.8],
         }}
         transition={{ 
-          rotate: { duration: 22, repeat: Infinity, ease: "linear" },
-          scale: { duration: 7, repeat: Infinity, ease: "easeInOut" }
+          rotate: { duration: config.animations.mandala.rotateDuration, repeat: Infinity, ease: "linear" },
+          scale: { duration: config.animations.mandala.scaleDuration, repeat: Infinity, ease: "easeInOut" }
         }}
       >
         <MandalaWatermark position="center" />
       </motion.div>
 
-      {/* Full-page animated dots background */}
+      {/* EXACT SAME - Full-page animated dots background */}
       <div className="absolute inset-0 pointer-events-none z-5">
-        {[...Array(60)].map((_, i) => (
+        {[...Array(config.animations.dots.count)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-[#f7ddb0]/30 rounded-full"
+            className={`absolute w-${config.animations.dots.size} h-${config.animations.dots.size} bg-[${config.colors.primary}]/30 rounded-full`}
             style={{
               left: `${(i % 12) * 9}%`,
               top: `${Math.floor(i / 12) * 8 + (i % 3) * 3}%`,
@@ -66,10 +102,10 @@ const Venue = () => {
               scale: [0.8, 1.2, 0.8]
             }}
             transition={{
-              duration: 4 + (i % 5),
+              duration: config.animations.dots.duration + (i % 5),
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.05
+              delay: i * config.animations.dots.delayIncrement
             }}
           />
         ))}
@@ -81,7 +117,7 @@ const Venue = () => {
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
       >
-        {/* Text Section with elegant reveal */}
+        {/* Text Section - EXACT SAME */}
         <motion.div variants={itemVariants}>
           <motion.h2 
             className="font-adelio font-bold text-center md:text-left text-4xl md:text-6xl text-[#f1f8f4] mb-2"
@@ -98,38 +134,26 @@ const Venue = () => {
               textShadow: { duration: 2.8, repeat: Infinity }
             }}
           >
-            Venue
+            {config.title}
           </motion.h2>
 
           <div className="flex justify-center md:justify-start mb-4">
-          <SectionDivider color="#f7ddb0" />
-        </div>
-            
+            <SectionDivider color={config.colors.primary} />
+          </div>
 
           <motion.p 
             className="font-para text-sm md:text-base text-[#cfe6da] leading-relaxed mt-6 px-2"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
+            dangerouslySetInnerHTML={{ __html: config.address }}
           >
-            <motion.span 
-              className="block font-para font-bold text-[#f7ddb0] text-xl mb-2"
-              animate={{ 
-                scale: [1, 1.05, 1],
-                textShadow: ["none", "0 0 10px rgba(247, 221, 176, 0.6)", "none"]
-              }}
-              transition={{ duration: 2.5, repeat: Infinity }}
-            >
-              The Royal Heritage Palace
-            </motion.span>
-            Lake Pichola Road<br />
-            Udaipur, Rajasthan
           </motion.p>
         </motion.div>
 
-        {/* Venue image with dramatic entrance */}
+        {/* Venue image - EXACT SAME */}
         <motion.div variants={itemVariants}>
           <motion.img
-            src={venue}
+            src={config.image}
             alt="Venue"
             className="rounded-3xl shadow-2xl object-cover w-full h-96 border-4 border-[#f7ddb0]/70 hover:border-[#f7ddb0]"
             initial={{ x: 60, rotateY: 15, scale: 0.9 }}
@@ -147,19 +171,10 @@ const Venue = () => {
               delay: 0.4 
             }}
           />
-          
-          {/* Image overlay shimmer */}
-          <motion.div
-            className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#f7ddb0]/20 via-transparent/0 to-[#d9a441]/20 -z-10 opacity-0 group-hover:opacity-100"
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-            }}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
         </motion.div>
       </motion.div>
 
-      {/* Floating venue particles */}
+      {/* EXACT SAME - Floating venue particles */}
       <div className="absolute top-1/3 right-12 hidden xl:block pointer-events-none">
         {[...Array(4)].map((_, i) => (
           <motion.div

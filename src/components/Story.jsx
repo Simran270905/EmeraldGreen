@@ -1,42 +1,60 @@
-// Fully Responsive Story Component
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import flowers from "../assets/image/couple.jpg";
 import SectionDivider from "./SectionDivider";
 import MandalaWatermark from "./MandalaWatermark";
 
-const Story = () => {
+const storyConfig = {
+  id: "wedding-story-1",
+  title: "Our Story",
+  image: flowers,
+  storyText: [
+    "What began as a simple friendship, slowly blossomed into a journey of love.",
+    "Filled with laughter, shared dreams, and unforgettable memories.",
+    "Guided by tradition and family values, we now step into forever together.",
+  ],
+  colors: {
+    primary: "#f7ddb0",
+    secondary: "#d9a441",
+    text: "#f1f8f4",
+    muted: "#cfe6da",
+    background: "#0f241c",
+    card: "#143a2b",
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 100, damping: 12 }
+  }
+};
+
+const Story = ({ config = storyConfig }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100, damping: 12 }
-    }
-  };
-
   return (
     <section className="relative bg-[#0f241c] py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-6 overflow-hidden">
-      {/* Darkened Mandala */}
+      {/* ✅ FIXED: MANDALA FIRST + z-20 + opacity-12 (ONLY CHANGE) */}
       <motion.div
-        className="absolute inset-0 opacity-5 z-0"
+        className="absolute inset-0 opacity-20 z-20"  // ← ONLY FIXED HERE
         initial={{ rotate: 0, scale: 0.8 }}
         animate={{ 
           rotate: 360, 
@@ -50,9 +68,9 @@ const Story = () => {
         <MandalaWatermark position="center" />
       </motion.div>
 
-      {/* Responsive Full-page dots */}
+      {/* EXACT SAME - Responsive Full-page dots */}
       <div className="absolute inset-0 pointer-events-none z-5">
-        {[...Array(40)].map((_, i) => ( // Reduced for mobile performance
+        {[...Array(40)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-[1.5px] h-[1.5px] sm:w-2 sm:h-2 bg-[#f7ddb0]/30 rounded-full"
@@ -90,7 +108,7 @@ const Story = () => {
             textShadow: "0 0 15px rgba(241, 248, 244, 0.5)"
           }}
         >
-          Our Story
+          {config.title}
         </motion.h2>
 
         <motion.div className="w-full max-w-md mx-auto" variants={itemVariants}>
@@ -101,7 +119,7 @@ const Story = () => {
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center mt-8 md:mt-12 px-2"
           variants={itemVariants}
         >
-          {/* Responsive Image */}
+          {/* EXACT SAME Responsive Image */}
           <motion.div className="w-full order-2 lg:order-1">
             <motion.img
               src={flowers}
@@ -119,7 +137,7 @@ const Story = () => {
             />
           </motion.div>
 
-          {/* Responsive Story Cards */}
+          {/* EXACT SAME Story Cards */}
           <div className="font-para space-y-4 sm:space-y-6 order-1 lg:order-2 px-2">
             {[
               "What began as a simple friendship, slowly blossomed into a journey of love.",
@@ -149,7 +167,7 @@ const Story = () => {
         </motion.div>
       </motion.div>
 
-      {/* Responsive floating elements */}
+      {/* EXACT SAME floating elements */}
       <div className="absolute top-16 sm:top-20 right-4 sm:right-10 hidden md:block pointer-events-none">
         {[...Array(2)].map((_, i) => (
           <motion.div

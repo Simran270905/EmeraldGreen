@@ -2,19 +2,45 @@ import { motion } from "framer-motion";
 import SectionDivider from "./SectionDivider";
 import MandalaWatermark from "./MandalaWatermark";
 
-const Footer = () => {
+const footerConfig = {
+  id: "wedding-footer-1",
+  title: "Save The Date",
+  subtitle: "We look forward to celebrating with you",
+  date: "12 · DECEMBER · 2025",
+  company: "StarX Innovation and IT Solution",
+  colors: {
+    primary: "#f7ddb0",
+    secondary: "#d9a441",
+    text: "#f1f8f4",
+    muted: "#5f7f71",
+    background: "#143a2b",
+  },
+  animations: {
+    mandala: {
+      scaleDuration: 8,
+      opacityRange: [0.04, 0.08, 0.04],
+    },
+    dots: {
+      count: 60,
+      duration: 5,
+      delayIncrement: 0.03,
+    },
+  },
+};
+
+const Footer = ({ config = footerConfig }) => {
   return (
     <footer className="relative bg-[#143a2b]/95 py-7 px-4 overflow-hidden">
-      {/* Darkened Mandala with gentle pulse */}
+      {/* ✅ FIXED: Mandala FIRST + z-20 + opacity-12 */}
       <motion.div
-        className="absolute inset-0 opacity-5 z-0"
+        className="absolute inset-0 opacity-12 z-20"
         initial={{ scale: 0.9 }}
         animate={{ 
           scale: [0.9, 1.1, 0.9],
-          opacity: [0.04, 0.08, 0.04]
+          opacity: config.animations.mandala.opacityRange
         }}
         transition={{ 
-          duration: 8,
+          duration: config.animations.mandala.scaleDuration,
           repeat: Infinity,
           ease: "easeInOut" 
         }}
@@ -22,9 +48,9 @@ const Footer = () => {
         <MandalaWatermark position="center" />
       </motion.div>
 
-      {/* Full-page animated dots background */}
+      {/* EXACT SAME - Full-page animated dots background */}
       <div className="absolute inset-0 pointer-events-none z-5">
-        {[...Array(60)].map((_, i) => (
+        {[...Array(config.animations.dots.count)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1.5 h-1.5 bg-[#f7ddb0]/25 rounded-full"
@@ -39,10 +65,10 @@ const Footer = () => {
               scale: [0.7, 1.1, 0.7]
             }}
             transition={{
-              duration: 5 + (i % 4),
+              duration: config.animations.dots.duration + (i % 4),
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.03
+              delay: i * config.animations.dots.delayIncrement
             }}
           />
         ))}
@@ -70,7 +96,7 @@ const Footer = () => {
             textShadow: { duration: 4, repeat: Infinity }
           }}
         >
-          Save The Date
+          {config.title}
         </motion.h2>
 
         <motion.div 
@@ -80,7 +106,7 @@ const Footer = () => {
           }} 
           transition={{ duration: 3, repeat: Infinity }}
         >
-          <SectionDivider color="#d9a441" />
+          <SectionDivider color={config.colors.secondary} />
         </motion.div>
 
         <motion.p 
@@ -89,7 +115,7 @@ const Footer = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          We look forward to celebrating with you
+          {config.subtitle}
         </motion.p>
 
         <motion.div 
@@ -107,13 +133,13 @@ const Footer = () => {
           }}
         >
           <p className="text-2xl font-serif text-[#f7ddb0] tracking-widest">
-            12 · DECEMBER · 2025
+            {config.date}
           </p>
         </motion.div>
 
-        {/* Copyright line */}
+        {/* Copyright line - FIXED */}
         <p className="mt-8 text-[11px] sm:text-xs text-[#5f7f71]">
-          © {new Date().getFullYear()} StarX Innovation and IT Solution. All rights reserved.
+          © {new Date().getFullYear()} {config.company}. All rights reserved.
         </p>
       </motion.div>
     </footer>
